@@ -30,19 +30,22 @@ notice you are contradicting earlier decisions, say so and suggest a fresh sessi
 
 ## Where evidence lives
 
-- `turn_results/` at the project root, gitignored. One flat folder per run, images only, numbered
-  `NN-<feature>-<state>.png` in the order taken. No subfolders. Never `/tmp`, never the source
-  tree. Past runs stay on disk as "before" evidence.
-- `docs/PROGRESS.md`: status newest first, **Blocked** at the top, and the run folder that proved
-  each feature. David reads this first when he returns; keep it true.
+- `turn_results/` at the project root, gitignored. One flat folder per run: screenshots
+  (`NN-<feature>-<state>.png`) and captured output (`NN-<what>.txt`) only, numbered in the order
+  taken. No subfolders. Never `/tmp`, never the source tree. Past runs stay on disk as "before"
+  evidence.
+- `docs/PROGRESS.md`: status newest first, **Blocked** and **Known gaps** (accepted critique
+  findings) at the top, and the run folder that proved each feature. David reads this first when
+  he returns; keep it true.
 - `docs/DECISIONS.md`: every deviation from `docs/PLAN.md`, one dated line, with the reason
   (usually what the installed library actually allows).
 
 ## Stack defaults
 
-Python → `uv` + `pyproject.toml`, FastAPI, SQLite with all SQL in one repository module. Web →
-Vite + TypeScript (React only when the UI has real state). Styling → Tailwind v4 via the
-standalone CLI at `tools/tailwindcss` (gitignored). Browser work → Playwright, Chromium only.
+Python → `uv` + `pyproject.toml`, FastAPI + Jinja for ordinary websites (the default when there
+is a UI), SQLite with all SQL in one repository module. Highly interactive browser apps → Vite +
+TypeScript (React only when the UI has real state). Styling → Tailwind v4 via the standalone CLI
+at `tools/tailwindcss` (gitignored). Browser work → Playwright, Chromium only.
 Every project has a `justfile` with at least `setup`, `dev`, `test`, `turn`; prefer `just`
 recipes over raw commands. New projects use the `new-project` skill.
 

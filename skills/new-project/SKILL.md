@@ -78,7 +78,7 @@ setup:
     uv sync
     uv run playwright install chromium
     mkdir -p tools
-    test -x tools/tailwindcss || (curl -sL -o tools/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-arm64 && chmod +x tools/tailwindcss)
+    test -x tools/tailwindcss || (curl -sL -o tools/tailwindcss "https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-$(uname -m | sed s/x86_64/x64/)" && chmod +x tools/tailwindcss)
 
 # Start the app on :8000
 dev: css
@@ -175,6 +175,10 @@ Read this first in every new session. Newest at the top.
 ## Blocked
 
 - (nothing)
+
+## Known gaps
+
+- (critique findings accepted rather than fixed, with the run folder)
 
 ## Status
 

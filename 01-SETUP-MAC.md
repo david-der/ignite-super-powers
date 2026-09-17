@@ -1,6 +1,6 @@
 # Set up your Mac
 
-Goal: a terminal that can run Claude Code and the four tools the house way depends on. Assume
+Goal: a terminal that can run Claude Code and the five tools the house way depends on. Assume
 nothing is installed. Everything here is copy and paste. When a step says *check*, paste the check
 line and compare with what you see. If it prints a version number, move on.
 
@@ -41,23 +41,23 @@ lives. Then close Terminal and open it again. Check:
 brew --version
 ```
 
-## 3. The four tools, in one line
+## 3. The five tools, in one line
 
 ```bash
-brew install just uv node gh
+brew install just uv node pnpm gh
 ```
 
 What each one is:
 
 - **just** runs the short command menu in every project (the `justfile`).
 - **uv** installs and runs Python and Python projects. You never install Python by hand; uv does it.
-- **node** runs JavaScript projects (websites built with Vite) and the browser automation.
+- **node** and **pnpm** run JavaScript projects (websites built with Vite).
 - **gh** talks to GitHub from the terminal, for saving your code online.
 
-Check all four:
+Check all five:
 
 ```bash
-just --version && uv --version && node --version && gh --version
+just --version && uv --version && node --version && pnpm --version && gh --version
 ```
 
 ## 4. Tell git who you are
@@ -92,19 +92,28 @@ Close Terminal, open it again, then:
 claude
 ```
 
-The first run asks you to sign in with your Claude account in the browser. When you see the
+The first run asks you to sign in with your Claude account in the browser. Claude Code needs a
+paid Claude plan (Pro or higher); the sign-in page says so if yours is not. When you see the
 Claude prompt, type `/exit` to leave. Check:
 
 ```bash
 claude --version
 ```
 
-## 7. A workspace folder
+## 7. A workspace folder, with this guide inside it
 
-All projects live in one place so you and Claude always know where to look.
+All projects live in one place so you and Claude always know where to look. The second line
+downloads this guide into it.
 
 ```bash
-mkdir -p ~/workspace
+mkdir -p ~/workspace && cd ~/workspace
+git clone https://github.com/david-der/ignite-super-powers.git
+```
+
+Check:
+
+```bash
+ls ~/workspace/ignite-super-powers
 ```
 
 ## 8. Playwright (the browser that takes screenshots)
@@ -114,8 +123,9 @@ Playwright is installed per project by `just setup`, so there is nothing to do n
 
 ## Done
 
-You have: `git`, `brew`, `just`, `uv`, `node`, `gh`, `claude`, and a `~/workspace` folder. Go to
-`README.md` step 2 to install the superpowers, then read `02-THE-LOOP.md`.
+You have: `git`, `brew`, `just`, `uv`, `node`, `pnpm`, `gh`, `claude`, and this guide at
+`~/workspace/ignite-super-powers`. Go to `README.md` step 2 to install the superpowers, then read
+`02-THE-LOOP.md`.
 
 ## If something goes wrong
 

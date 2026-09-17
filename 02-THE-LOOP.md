@@ -21,12 +21,10 @@ plan  →  build one feature  →  turn  →  screenshot  →  read  →  critiq
    the spec; when Claude deviates, it says so.
 2. **Build one feature.** Not three. One feature with a name, from the plan.
 3. **Turn.** Claude uses the app the way a real user would, through the real interface. It starts
-   the app, clicks the button, types the message, uploads the file. The browser is the beginner
-   case of a general rule: Claude proves work through the same boundary the user will use. A
-   command-line tool is run from the shell, an API is called over the network, a script is run on
-   real input. A test that only checks a function is not a turn.
-4. **Screenshot.** Every turn ends in a screenshot of what the user sees (for a command-line tool
-   or an API, the command and its captured output as a text file), saved into
+   the app, clicks the button, types the message, uploads the file. If what you are building has
+   no screen (a tool you run by typing a command), the same rule holds: Claude runs it the way you
+   would and keeps what it printed. A test that only checks the code from the inside is not a turn.
+4. **Screenshot.** Every turn ends in a screenshot of what the user sees, saved into
    `turn_results/<YYYYMMDD-HHMMSS>-<what>/` at the project root. One folder per run, files in a
    flat list, numbered in the order they were taken. No subfolders, ever, so you open one folder
    and scroll.
@@ -35,33 +33,30 @@ plan  →  build one feature  →  turn  →  screenshot  →  read  →  critiq
 6. **Critique.** As the user, not the author. Did it finish? Is anything blank, clipped, faded,
    duplicated, unstyled, or misaligned? Is the state what a user would expect? Each finding is
    written down in one line.
-7. **Fix.** Every finding is either fixed now or explicitly accepted and noted. Then another turn,
-   in the same run folder, to confirm in pixels.
+7. **Fix.** Every finding is either fixed now or explicitly accepted and noted under **Known
+   gaps** in `docs/PROGRESS.md`. Then another turn, in the same run folder, to confirm in pixels.
 8. **Commit.** One git commit per feature, named for the feature. No squashing days of work into
    one commit; the history is the story of the build.
 9. **Log.** `docs/PROGRESS.md` gets the feature's status and the name of the run folder that
    proved it. `docs/DECISIONS.md` gets any deviation from the plan and why.
 
-Then the next feature.
+Then the next feature. When Claude says a feature is done, it means the evidence is in the folder
+waiting for you. It is finished when you have looked and said so.
 
 ## Rules that keep the loop honest
 
-- **No claim without evidence from the outside.** "It works" means "here is what a user would
-  see, and here is what I saw in it". For a UI that is a screenshot; for a command-line tool, the
-  command and its output; for an API, the request and the response. Claude saying the code looks
-  correct is not evidence, and a passing unit test on its own is not either.
+- **No claim without evidence.** "It works" means "here is what a user would see, and here is
+  what I saw in it". For a web page that is a screenshot; for a tool you run by typing, the
+  command and what it printed. Claude saying the code looks right does not count.
 - **Blockers do not stop the build.** If Claude cannot do something (a password, a login, a
   permission), it writes it under **Blocked** in `docs/PROGRESS.md` and moves to the next thing.
   You clear the blocked list when you come back.
 - **Every deviation is written down.** The plan says X, the library only allows Y: Claude does Y
   and adds one line to `docs/DECISIONS.md` saying why. You read that file to learn what changed.
-- **Verify the library before using it.** Packages change monthly. Claude reads the installed
-  source, not its memory, before calling an API.
-- **Logic goes in scripts, not prose.** Anything that computes a number or transforms a file is a
-  script that can be run again and tested, never a paragraph of instructions.
 - **Autonomy by default.** Claude makes the implementation decisions and does not ask permission
   for reversible things that follow from the plan. It asks only for destructive actions (deleting
-  data, force-pushing, spending money) or genuine changes of scope. You can redirect at any time.
+  data, overwriting saved work, spending money) or genuine changes of scope. You can redirect at
+  any time.
 - **Prioritise the demo.** When two features are equally next, build the one you could show a
   friend. Rich, visible outcomes first: real data, a page you can open, a file you can download.
 
@@ -109,7 +104,7 @@ These phrases map directly to the skills and the loop:
 
 The Claude that built a feature has the whole build in its head, and that is exactly what makes it
 a forgiving reviewer. For work that matters or is a matter of taste, especially UI, ask a second
-session to look. Open a new terminal tab, run `claude` in the project, and say:
+session to look. Open a new Terminal tab (`Cmd + T`), run `claude` in the project, and say:
 
 > Review the newest folder in turn_results/ against docs/PLAN.md as a first-time user. List what is
 > wrong, most important first. Do not fix anything.
@@ -121,6 +116,6 @@ and one folder of pictures. No extra tools.
 ## Why it works
 
 A model that builds and then grades its own work with the same eyes will pass itself. Forcing the
-work through the boundary the user uses, and into a picture or a captured output, puts a second,
-dumber, more honest check in the loop. A fresh session adds a third. And putting every run in a
-dated folder means the evidence is always one click away for the person who was not watching.
+work through the real interface and into a picture puts a second, dumber, more honest check in the
+loop: pixels. A fresh session adds a third. And putting every run in a dated folder means the
+evidence is always one click away for the person who was not watching.
