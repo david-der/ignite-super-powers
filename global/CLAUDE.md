@@ -48,7 +48,9 @@ fresh session.
 Python → `uv` + `pyproject.toml`, FastAPI + Jinja for ordinary websites (the default when there
 is a UI), SQLite with all SQL in one repository module. Highly interactive browser apps → Vite +
 TypeScript (React only when the UI has real state). Styling → Tailwind v4 via the standalone CLI
-at `tools/tailwindcss` (gitignored). Browser work → Playwright, Chromium only.
+at `tools/tailwindcss` (gitignored). Browser work → Playwright, Chromium only. Chat products →
+ChatKit for the chat window. Anything that waits on a model → stream the reply token by token,
+never a spinner then a block; a turn waits for the stream to finish before the screenshot.
 Every project has a `justfile` with at least `setup`, `dev`, `test`, `turn`; prefer `just`
 recipes over raw commands. New projects use the `new-project` skill.
 

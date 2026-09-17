@@ -18,6 +18,8 @@ something else, that is a decision and goes in `docs/DECISIONS.md`.
 | **FastAPI + Jinja** | Python backends and ordinary websites: pages with forms, lists and tables. The default when there is a UI | Small, typed, server-rendered pages need no build step, and the docs page at `/docs` doubles as a smoke test. |
 | **SQLite** | Data, until it graduates | One file, zero setup, backed up by copying. All SQL lives in one repository module so moving to Postgres later is one file's work. |
 | **Playwright** | Turns and screenshots | Drives a real browser. Python flavour in Python projects, TypeScript flavour in Vite projects. Chromium only. |
+| **ChatKit** | The chat window when the product is a conversation with an AI agent | A finished chat UI (composer, streaming replies, attachments, threads) so the work goes into the agent, not the chat widgets. Only for chat products; a board-game page does not need it. |
+| **Streaming replies** | Any feature that waits on an AI model | Words appear as they are generated, never a spinner then a wall of text. A turn is not done until the stream has finished, so the screenshot shows the whole reply. |
 | **git + GitHub, private** | History and backup | Commit per feature. Public only when you decide it is portfolio-worthy. |
 
 ## Project shape
