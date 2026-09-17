@@ -13,8 +13,11 @@ Every screenshot of app work goes to one place, named one way, so nobody navigat
   `.gitignore`.
 - One folder per run. `TURN_RUN_DIR` names it; when unset, each turn makes its own
   `<stamp>-turn` folder.
-- Flat: images only, no subfolders. Files are `<label>.png`, and the label starts with a two-digit
-  number in the order taken: `01-home-empty`, `02-home-after-add`.
+- Flat: no subfolders. Files are `<label>.png`, and the label starts with a two-digit number in
+  the order taken: `01-home-empty`, `02-home-after-add`.
+- Turns that are not in a browser (a command-line tool, an API call) save the command and its
+  output as `<label>.txt` in the same folder, with the same numbering. One folder tells the whole
+  story.
 - When the page scrolls, also save `<label>-full.png` (full page). The viewport shot is the one
   to read first.
 - Viewport default is 1280×820. `APP_VIEWPORT=390x844` for a phone.

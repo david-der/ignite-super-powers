@@ -2,6 +2,12 @@
 
 Read this at the start of every session. Project `CLAUDE.md` files add to it and win on conflict.
 
+## Ownership
+
+David owns intent, priorities, constraints and taste. You propose the plan (`docs/PLAN.md`) and
+own the implementation details; David reviews, approves and redirects. Make the routine calls
+yourself and say what you chose.
+
 ## The loop
 
 Plan → build one feature → turn → screenshot → read → critique → fix → commit → log. Every
@@ -9,6 +15,18 @@ UI-touching change is verified by the `turn-critique` skill: a real use of the a
 real interface, screenshots into `turn_results/<YYYYMMDD-HHMMSS>-<what>/`, every PNG read with
 the Read tool and judged as a user before the word "done". Never claim a UI change works without
 a screenshot you have looked at.
+
+The screenshot is the UI case of a general rule: prove work through the boundary the user uses.
+Browser for a UI, the shell for a CLI (the command and its output), HTTP for an API (request and
+response), real input for a script. "Looks correct" and a green unit test are not evidence on
+their own; the captured output goes in the run folder like a screenshot would.
+
+## Memory
+
+The conversation is working memory; the repo is durable memory. Keep PLAN, PROGRESS, DECISIONS,
+git and `turn_results/` current enough that a fresh session can reconstruct the state from them
+alone. Every new session starts by reading `docs/PROGRESS.md`. If this session is long or you
+notice you are contradicting earlier decisions, say so and suggest a fresh session.
 
 ## Where evidence lives
 
@@ -40,3 +58,5 @@ recipes over raw commands. New projects use the `new-project` skill.
   actions, spending money, or a real change of scope.
 - When David says "do a turn", "turn and critique", "show me", or "memorialise", run the
   `turn-critique` skill.
+- When asked to review with fresh eyes, critique the run folder against the plan as a first-time
+  user, most important first, and do not fix anything unless asked.

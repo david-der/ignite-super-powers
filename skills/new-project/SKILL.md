@@ -13,7 +13,8 @@ does not call for yet: no deploy, no auth, no CI on day one.
 
 - **Name**, kebab-case: `game-shelf`.
 - **What it is, in three sentences**: what, for whom, what "done" means for the first version.
-  If the owner gave them, use their words verbatim in `docs/PLAN.md`.
+  If the owner gave them, use their words verbatim in `docs/PLAN.md`. The owner supplies the
+  intent; you propose the feature order and the "done when" lines, and say so, so they can edit.
 - **Shape**: a Python app (FastAPI + Jinja templates + Tailwind, SQLite), a Vite web app
   (TypeScript, React only if the UI has real state), or a script/CLI (uv, no UI). Default to the
   Python app when there is a UI and no strong reason otherwise.
@@ -169,7 +170,7 @@ the feature. Deviations from the plan go in `docs/DECISIONS.md`. Blockers go und
 ```markdown
 # Progress
 
-Read this first. Newest at the top.
+Read this first in every new session. Newest at the top.
 
 ## Blocked
 

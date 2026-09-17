@@ -10,7 +10,8 @@ Write them down before opening the terminal. For example:
 > A page that lists my board games and lets me mark which ones we played this month. For me and my
 > family on our phones. Done when I can add a game, mark it played, and see the month's list.
 
-That is a plan. Claude will turn it into `docs/PLAN.md`.
+That is the intent. Claude will propose a plan from it in `docs/PLAN.md`: features in an order,
+and what "done" means for each. Read it and change what is wrong before the build gets far.
 
 ## 2. Start Claude Code in your workspace
 
@@ -22,12 +23,13 @@ claude
 ## 3. Say this
 
 > Start a new project called game-shelf. It is: [paste your three sentences]. Use the
-> new-project skill. Python with FastAPI and Tailwind, SQLite for data. When the scaffold is up,
-> build the first feature from the plan, do a turn, and show me.
+> new-project skill. Python with FastAPI and Tailwind, SQLite for data. Draft the plan, then build
+> the first feature from it, do a turn, and show me.
 
 Then wait. Claude will:
 
 - make `~/workspace/game-shelf` with the justfile, `CLAUDE.md`, the three docs, and git;
+- draft `docs/PLAN.md` from your sentences, in the order it thinks is right (you can change it);
 - run `just setup`, which downloads the screenshot browser (this is the slow part);
 - build the first feature;
 - run `just turn`, which starts the app, uses it, and saves screenshots to a dated folder in
@@ -59,6 +61,9 @@ Claude reads where it left off, including anything under **Blocked**, and picks 
 feature. You read `docs/PROGRESS.md` and the newest `turn_results/` folder. That is the whole
 rhythm.
 
+The new session starts with an empty memory, and that is fine: the docs and the pictures are the
+memory. Start a fresh session whenever the old one gets long or confused, not only tomorrow.
+
 ## 6. When you want it online
 
 Not yet. Use it locally until the screenshots look like something you would show a friend. Then
@@ -73,3 +78,5 @@ and write the choice in `docs/DECISIONS.md`.
 - A turn costs a few cents of model use if the app itself calls a model. A screenshot of a plain
   web page costs nothing.
 - Claude will sometimes say "this is not done, the screenshot shows X". That is the loop working.
+- Claude proposes things you did not ask for: a feature order, a library, a layout. That is its
+  job. Say yes, or say why not, and it adjusts.

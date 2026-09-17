@@ -1,20 +1,27 @@
 ---
 name: turn-critique
-description: Verify any UI-touching change with real turns — use the app through its real interface, screenshot into ./turn_results/<YYYYMMDD-HHMMSS-what>/, then READ every screenshot and critique it as a user before calling anything done. Use when asked to "do a turn", "turn and critique", "show me", "verify", or "memorialise a run".
+description: Prove any change from the outside with real turns — use the app through the boundary a user uses (browser for UI, shell for CLI, HTTP for API), save the evidence into ./turn_results/<YYYYMMDD-HHMMSS-what>/, then READ every screenshot or output and critique it as a user before calling anything done. Use when asked to "do a turn", "turn and critique", "show me", "verify", "review with fresh eyes", or "memorialise a run".
 ---
 
 # Turn and critique
 
-A **turn** is one real use of the app the way a user would do it, through the real interface
-(the browser, the real backend, real data, real model if there is one), ending in a screenshot of
-what the user sees. A **critique** is reading that screenshot as the user, not the author, and
-saying what is wrong. Turn → screenshot → read → critique → fix → repeat, in the same run folder,
-until the pixels are right. Never claim a UI change works without turn evidence you have looked at.
+A **turn** is one real use of the app the way a user would do it, through the same boundary the
+user uses (the browser with the real backend, real data, real model if there is one), ending in
+evidence of what the user sees: a screenshot. A **critique** is reading that screenshot as the
+user, not the author, and saying what is wrong. Turn → screenshot → read → critique → fix →
+repeat, in the same run folder, until the pixels are right. Never claim a change works without
+turn evidence you have looked at.
+
+The browser is the main case, not the only one. A command-line tool is run from the shell and its
+command and output are saved as `<label>.txt`; an API is called over HTTP and the request and
+response are saved the same way; a script is run on real input and its output kept. "The code
+looks correct" is not evidence, and a green unit test on its own is not either.
 
 ## Where turns live
 
 - `./turn_results/<YYYYMMDD-HHMMSS>[-suffix]/` at the project root, gitignored. One flat folder
-  per run, images only, no subfolders, so a person opens one folder and scrolls.
+  per run, screenshots and captured output only, no subfolders, so a person opens one folder and
+  scrolls.
 - Files are numbered in the order taken: `01-login-empty.png`, `02-login-error.png`,
   `03-home-first-visit.png`. A folder reads top to bottom like a session.
 - Group a session's turns with `export TURN_RUN_DIR="$(date +%Y%m%d-%H%M%S)-what-im-testing"`
@@ -54,6 +61,15 @@ the same kind of folder with the same numbering.
 When a feature is verified, add to `docs/PROGRESS.md` next to the feature: the run folder name,
 which screenshots to look at, and the critique findings (fixed or accepted). That pointer is how
 the person who was not watching finds the evidence.
+
+## Fresh eyes
+
+The session that built the feature is a forgiving reviewer: it remembers every shortcut and why
+it was fine. For important or subjective work, especially UI, a second session with no build
+context reviews the run folder against `docs/PLAN.md` as a first-time user and lists what is
+wrong, most important first, without fixing anything. When you are that second session, do
+exactly that: read every file in the folder, compare with the plan, and report. Do not read the
+implementation first; the point is to see it the way a user does.
 
 ## Coverage trap
 
