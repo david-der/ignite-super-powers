@@ -10,9 +10,9 @@ happened. You review, approve, and redirect. Neither of you gets to say "done" w
 ## One cycle
 
 ```
-plan  →  build one feature  →  turn  →  screenshot  →  read  →  critique  →  fix  →  commit  →  log
-                                  ↑                                            │
-                                  └────────────── same run folder ─────────────┘
+plan  →  build one feature  →  turn  →  evidence  →  read  →  critique  →  fix  →  commit  →  log
+                                  ↑                                          │
+                                  └───────────── same run folder ────────────┘
 ```
 
 1. **Plan.** Before any code, a short plan in `docs/PLAN.md`: what the product is, who it is for,
@@ -24,7 +24,7 @@ plan  →  build one feature  →  turn  →  screenshot  →  read  →  critiq
    the app, clicks the button, types the message, uploads the file. If what you are building has
    no screen (a tool you run by typing a command), the same rule holds: Claude runs it the way you
    would and keeps what it printed. A test that only checks the code from the inside is not a turn.
-4. **Screenshot.** Every turn ends in a screenshot of what the user sees, saved into
+4. **Evidence.** Every turn ends in a screenshot of what the user sees, saved into
    `turn_results/<YYYYMMDD-HHMMSS>-<what>/` at the project root. One folder per run, files in a
    flat list, numbered in the order they were taken. No subfolders, ever, so you open one folder
    and scroll.

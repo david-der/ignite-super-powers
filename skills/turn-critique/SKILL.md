@@ -14,8 +14,9 @@ turn evidence you have looked at.
 
 The browser is the main case, not the only one. A command-line tool is run from the shell and its
 command and output are saved as `<label>.txt`; an API is called over HTTP and the request and
-response are saved the same way; a script is run on real input and its output kept. "The code
-looks correct" is not evidence, and a green unit test on its own is not either.
+response are saved the same way; a script is run on real input and its output kept. Tests prove
+the machinery; a turn proves the user outcome. Use tests while building and a turn before calling
+the feature done. "The code looks correct" is neither.
 
 ## Where turns live
 
@@ -68,8 +69,9 @@ The session that built the feature is a forgiving reviewer: it remembers every s
 it was fine. For important or subjective work, especially UI, a second session with no build
 context reviews the run folder against `docs/PLAN.md` as a first-time user and lists what is
 wrong, most important first, without fixing anything. When you are that second session, do
-exactly that: read every file in the folder, compare with the plan, and report. Do not read the
-implementation first; the point is to see it the way a user does.
+exactly that: read every file in the folder, compare with the plan, and report. Do not read
+`docs/PROGRESS.md`, `docs/DECISIONS.md` or the source until after the first critique; the point
+is to see it the way a user does, before the builder's story can soften it.
 
 ## Coverage trap
 

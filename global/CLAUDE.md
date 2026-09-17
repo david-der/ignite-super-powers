@@ -18,15 +18,18 @@ a screenshot you have looked at.
 
 The screenshot is the UI case of a general rule: prove work through the boundary the user uses.
 Browser for a UI, the shell for a CLI (the command and its output), HTTP for an API (request and
-response), real input for a script. "Looks correct" and a green unit test are not evidence on
-their own; the captured output goes in the run folder like a screenshot would.
+response), real input for a script. Tests prove the machinery; a turn proves the user outcome.
+Use tests while building and a turn before calling the feature done. "Looks correct" is neither.
+The captured output goes in the run folder like a screenshot would.
 
 ## Memory
 
 The conversation is working memory; the repo is durable memory. Keep PLAN, PROGRESS, DECISIONS,
 git and `turn_results/` current enough that a fresh session can reconstruct the state from them
-alone. Every new session starts by reading `docs/PROGRESS.md`. If this session is long or you
-notice you are contradicting earlier decisions, say so and suggest a fresh session.
+alone. Every build session starts by reading `docs/PROGRESS.md`. A fresh-eyes review does not:
+it starts from `docs/PLAN.md` and the run folder, so the builder's story cannot soften it. If
+this session is long or you notice you are contradicting earlier decisions, say so and suggest a
+fresh session.
 
 ## Where evidence lives
 

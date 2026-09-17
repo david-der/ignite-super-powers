@@ -11,7 +11,8 @@ working.**
 ## Three steps
 
 1. **Set up your Mac.** Follow `01-SETUP-MAC.md` top to bottom. About 30 minutes, mostly waiting
-   for downloads. You will end up with a terminal that can run `claude`, `just`, `uv` and `node`.
+   for downloads. You will end up with a terminal that can run `claude`, `just`, `uv`, `node`,
+   `pnpm` and `gh`.
 2. **Install the superpowers.** Setup step 7 put this folder at `~/workspace/ignite-super-powers`.
    Open Terminal, then paste these two lines:
 
